@@ -1,0 +1,95 @@
+﻿@page
+@model PropertyMarketplace.Pages.Partials.PostListingModel
+
+@{
+    ViewData["Title"] = "PostListing";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AdsBasicInfo.Title" class="control-label"></label>
+                <input asp-for="AdsBasicInfo.Title" class="form-control" />
+                <span asp-validation-for="AdsBasicInfo.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdsBasicInfo.Description" class="control-label"></label>
+                <input asp-for="AdsBasicInfo.Description" class="form-control" />
+                <span asp-validation-for="AdsBasicInfo.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdsBasicInfo.Price" class="control-label"></label>
+                <input asp-for="AdsBasicInfo.Price" class="form-control" />
+                <span asp-validation-for="AdsBasicInfo.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdsBasicInfo.Image" class="control-label"></label>
+                <input asp-for="AdsBasicInfo.Image" class="form-control" />
+                <span asp-validation-for="AdsBasicInfo.Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdsBasicInfo.Location" class="control-label"></label>
+                <input asp-for="AdsBasicInfo.Location" class="form-control" />
+                <span asp-validation-for="AdsBasicInfo.Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="categoryId" class="control-label"></label>
+                <select asp-for="categoryId" class="form-control" asp-items="ViewBag.categoryId "></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubCategoriesId" class="control-label"></label>
+                <select asp-for="SubCategoriesId" class="form-control" asp-items="ViewBag.SubCategoriesId"></select>
+            </div>
+            <div id="dataTable">
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#categoryId").on("change", function () {
+                var categoryId = $(this).val();
+                CategoryId = $(this).val();
+                $("#SubCategoriesId").empty();
+                $("#SubCategoriesId").append("<option value=''>Select Category</option>");
+                $.getJSON(`?handler=SubCategories&categoryId=${categoryId}`, (data) => {
+                    console.log(data);
+                    $.each(data, function (i, item) {
+                        $("#SubCategoriesId").append(`<option value="${item.CategoryId}"> ${item.CategoryName} </option>`);
+
+                    });
+
+                });
+            });
+
+        });
+        $(function () {
+            $("#SubCategoriesId").on("change", function () {
+                var data = CategoryId;
+                $.ajax({
+                    url: "/Partials/PostListing?handler=AddPartialToView",
+                    dataType: "html",
+                    data: { categoryId: data },
+                    success: function (data) {
+                        $("#dataTable").html(data);
+                    }
+                });
+            });
+
+        });
+    </script>
+
+}
+

@@ -1,0 +1,51 @@
+﻿@page
+@model PropertyMarketplace.Pages.Auto_Moto.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Auto Moto</h1>
+
+<div class="card-group">
+    @foreach (var item in Model.AutoMoto)
+    {
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-img-top"><img src="@Url.Content(item.AdsBasicInfo.Image))" width="239" height="180" /></h1>
+            <h5 class="card-title">@item.AdsBasicInfo.Title @item.AdsBasicInfo.Location</h5>
+            <p class="card-text">@item.AdsBasicInfo.Description.Substring(0, Math.Min(item.AdsBasicInfo.Description.Length, 200))...</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Category: @Html.DisplayFor(modelItem => item.Category.CategoryName)</small>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Make: @Html.DisplayFor(modelItem => item.Manufacturers.ManufacturerName)</small>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Model: @Html.DisplayFor(modelItem => item.CarModels.ModelName)</small>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Price: @Html.DisplayFor(modelItem => item.AdsBasicInfo.Price)</small>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Year of manufacture: @Html.DisplayFor(modelItem => item.YearOfManufacture)</small>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Location @Html.DisplayFor(modelItem => item.AdsBasicInfo.Location)</small>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Created:  @Html.DisplayFor(modelItem => item.AdsBasicInfo.ListingCreated)</small>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Mileage: @Html.DisplayFor(modelItem => item.Mileage) km</small>
+            <a asp-page="/Auto-Moto/Details" asp-route-id="@item.AutoMotoID" class="stretched-link"></a>
+        </div>
+    </div>
+    }
+
+
+
+
+</div>

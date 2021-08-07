@@ -1,0 +1,72 @@
+﻿@page
+@model PropertyMarketplace.Pages.Properties.Houses.IndexModel
+
+@{
+    ViewData["Title"] = "Your Listing";
+}
+
+<h1>Property Marketplace</h1>
+
+<p>     
+    <a asp-page="Create">Upload new property</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].AdsBasicInfo.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].AdsBasicInfo.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].AdsBasicInfo.Description)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].AdsBasicInfo.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].EnergyRating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].AdsBasicInfo.ListingCreated)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Properties.Where(c => c.CategoryId == 4))
+{
+        <tr>
+            <td>
+                <img src="@Url.Content(item.AdsBasicInfo.Image)" width="200" height="200" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdsBasicInfo.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdsBasicInfo.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdsBasicInfo.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnergyRating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdsBasicInfo.ListingCreated)
+            </td>
+            <td>
+                <a asp-page="/Properties/Details" asp-route-id="@item.PropertyID">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,75 @@
+﻿@model AutoMotoPartial
+
+
+
+<script type="text/javascript">
+
+    $(function () {
+        $("#ManufacturerId").append("<option value=''>Select Manufacturer</option>");
+        $.getJSON(`PostListing?handler=Manufacturers&ManufacturerId=${SubCategoriesId}`, (data) => {
+            console.log(data);
+            $.each(data, function (i, item) {
+                $("#ManufacturerId").append(`<option value="${item.ManufacturerID}"> ${item.ManufacturerName} </option>`);
+
+                        });
+                    });
+                });
+       
+        
+    
+
+</script>
+
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="form-group">
+    <label asp-for="AutoMoto.YearOfManufacture" class="control-label"></label>
+    <input asp-for="AutoMoto.YearOfManufacture" class="form-control" />
+    <span asp-validation-for="AutoMoto.YearOfManufacture" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="AutoMoto.Mileage" class="control-label"></label>
+    <input asp-for="AutoMoto.Mileage" class="form-control" />
+    <span asp-validation-for="AutoMoto.Mileage" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="AutoMoto.ManufacturerID" class="control-label"></label>
+    <select asp-for="ManufacturerId" class="form-control" asp-items="ViewBag.ManufacturerID"></select>
+</div>
+<div class="form-group">
+    <label asp-for="AutoMoto.ModelID" class="control-label"></label>
+    <select asp-for="ModelId" class="form-control" asp-items="ViewBag.ModelID"></select>
+</div>
+<div class="form-group">
+    <label asp-for="AutoMoto.TransmissionType" class="control-label"></label>
+    <select asp-for="AutoMoto.TransmissionType" class="form-control" asp-items="@Html.GetEnumSelectList<TransmissionTypes>()"></select>
+    <span asp-validation-for="AutoMoto.TransmissionType" class="text-danger"></span>
+</div>
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#ManufacturerId").on("change", function () {
+            var ManufacturerId = $(this).val();
+            $("#ModelId").empty();
+            $("#ModelId").append("<option value=''>Select Model</option>");
+            $.getJSON(`?handler=CarModels&ManufacturerId=${ManufacturerId}`, (data) => {
+                console.log(data);
+                $.each(data, function (i, item) {
+                    $("#ModelId").append(`<option value="${item.ModelID}"> ${item.ModelName} </option>`);
+                });
+            });
+        });
+
+    });
+
+
+</script>
+
+$('#State').change(function () {
+var stateid = $('#State').val();
+$.ajax({
+url:
+})
+})

@@ -1,0 +1,89 @@
+﻿@page
+@model PropertyMarketplace.Pages.Auto_Moto.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AutoMoto.AdsBasicInfo.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AutoMoto.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AutoMoto.AdsBasicInfo.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AutoMoto.AdsBasicInfo.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AutoMoto.TransmissionType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AutoMoto.Manufacturers.ManufacturerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AutoMoto.CarModels.ModelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AutoMoto.YearOfManufacture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AutoMoto.Mileage)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <img src="@Url.Content(Model.AutoMoto.AdsBasicInfo.Image)" width="200" height="200" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.AutoMoto.AdsBasicInfo.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.AutoMoto.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.AutoMoto.AdsBasicInfo.Description)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => Model.AutoMoto.AdsBasicInfo.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.AutoMoto.TransmissionType)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.AutoMoto.Manufacturers.ManufacturerName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.AutoMoto.CarModels.ModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.AutoMoto.YearOfManufacture)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.AutoMoto.Mileage)
+            </td>
+
+
+
+
+</tbody>
+</table>
+
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.AutoMoto.AutoMotoID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

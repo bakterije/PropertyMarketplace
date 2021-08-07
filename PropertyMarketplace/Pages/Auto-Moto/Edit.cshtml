@@ -1,0 +1,66 @@
+﻿@page
+@model PropertyMarketplace.Pages.Auto_Moto.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>AutoMoto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="AutoMoto.AutoMotoID" />
+            <div class="form-group">
+                <label asp-for="AutoMoto.YearOfManufacture" class="control-label"></label>
+                <input asp-for="AutoMoto.YearOfManufacture" class="form-control" />
+                <span asp-validation-for="AutoMoto.YearOfManufacture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AutoMoto.Mileage" class="control-label"></label>
+                <input asp-for="AutoMoto.Mileage" class="form-control" />
+                <span asp-validation-for="AutoMoto.Mileage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AutoMoto.ManufacturerID" class="control-label"></label>
+                <select asp-for="AutoMoto.ManufacturerID" class="form-control" asp-items="ViewBag.ManufacturerID"></select>
+                <span asp-validation-for="AutoMoto.ManufacturerID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AutoMoto.ModelID" class="control-label"></label>
+                <select asp-for="AutoMoto.ModelID" class="form-control" asp-items="ViewBag.ModelID"></select>
+                <span asp-validation-for="AutoMoto.ModelID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AutoMoto.AdID" class="control-label"></label>
+                <select asp-for="AutoMoto.AdID" class="form-control" asp-items="ViewBag.AdID"></select>
+                <span asp-validation-for="AutoMoto.AdID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AutoMoto.OwnerID" class="control-label"></label>
+                <input asp-for="AutoMoto.OwnerID" class="form-control" />
+                <span asp-validation-for="AutoMoto.OwnerID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AutoMoto.CategoryId" class="control-label"></label>
+                <select asp-for="AutoMoto.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <span asp-validation-for="AutoMoto.CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

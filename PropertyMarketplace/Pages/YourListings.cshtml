@@ -1,0 +1,124 @@
+﻿@page
+@model PropertyMarketplace.Pages.YourListingsModel
+
+@{
+    ViewData["Title"] = "YourListings";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>YourListings</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<h1>Properties</h1>
+
+<div class="card-group">
+    @foreach (var item in Model.Properties)
+        if (item.AdsBasicInfo == null)
+        {
+            <div class="text-black-50">
+                <p>You have no posted listings in this category</p>
+            </div>
+        }
+        else
+        {
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-img-top"><img src="@Url.Content(item.AdsBasicInfo.Image)" width="239" height="180" /></h1>
+                    <h5 class="card-title">@item.AdsBasicInfo.Title @item.AdsBasicInfo.Location</h5>
+                    <p class="card-text">@item.AdsBasicInfo.Description.Substring(0, Math.Min(item.AdsBasicInfo.Description.Length, 200))...</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Category: @Html.DisplayFor(modelItem => item.Category.CategoryName)</small>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Price: @Html.DisplayFor(modelItem => item.AdsBasicInfo.Price)</small>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Location @Html.DisplayFor(modelItem => item.AdsBasicInfo.Location)</small>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Created:  @Html.DisplayFor(modelItem => item.AdsBasicInfo.ListingCreated)</small>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Energy Category: @Html.DisplayFor(modelItem => item.EnergyRating)</small>
+                    <a asp-page="/Properties/Details" asp-route-id="@item.PropertyID" class="stretched-link"></a>
+                </div>
+            </div>
+
+
+        }
+</div>
+
+<h1>Auto-Moto</h1>
+
+<div class="card-group">
+    @foreach (var item in Model.AutoMotos)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-img-top"><img src="@Url.Content(item.AdsBasicInfo.Image))" width="239" height="180" /></h1>
+                <h5 class="card-title">@item.AdsBasicInfo.Title @item.AdsBasicInfo.Location</h5>
+                <p class="card-text">@item.AdsBasicInfo.Description.Substring(0, Math.Min(item.AdsBasicInfo.Description.Length, 200))...</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Category: @Html.DisplayFor(modelItem => item.Category.CategoryName)</small>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Brand: @Html.DisplayFor(modelItem => item.Manufacturers.ManufacturerName)</small>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Model: @Html.DisplayFor(modelItem => item.CarModels.ModelName)</small>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Price: @Html.DisplayFor(modelItem => item.AdsBasicInfo.Price)</small>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Location @Html.DisplayFor(modelItem => item.AdsBasicInfo.Location)</small>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Created:  @Html.DisplayFor(modelItem => item.AdsBasicInfo.ListingCreated)</small>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Mileage: @Html.DisplayFor(modelItem => item.Mileage)</small>
+                <a asp-page="/Auto-Moto/Details" asp-route-id="@item.AutoMotoID" class="stretched-link"></a>
+            </div>
+        </div>
+
+
+    }
+</div>
+
+<h1>Other Listings</h1>
+
+<div class="card-group">
+    @foreach (var item in Model.AdsList.Where(a => a.Category.ParentId != 1 && a.Category.ParentId != 2))
+    
+    {
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-img-top"><img src="@Url.Content(item.Image))" width="239" height="180" /></h1>
+                <h5 class="card-title">@item.Title @item.Location</h5>
+                <p class="card-text">@item.Description.Substring(0, Math.Min(item.Description.Length, 200))...</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Category: @Html.DisplayFor(modelItem => item.Category.CategoryName)</small>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Price: @Html.DisplayFor(modelItem => item.Price)</small>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Location @Html.DisplayFor(modelItem => item.Location)</small>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Created:  @Html.DisplayFor(modelItem => item.ListingCreated)</small>
+                <a asp-page="/Ads/Details" asp-route-id="@item.AdID" class="stretched-link"></a>
+            </div>
+        </div>
+
+
+    }
+</div>
+

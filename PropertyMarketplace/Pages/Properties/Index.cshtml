@@ -1,0 +1,74 @@
+﻿@page
+@model PropertyMarketplace.Pages.Properties.IndexModel
+
+@{
+    ViewData["Title"] = "Your Listing";
+}
+
+<h1>Property Marketplace</h1>
+
+<p>
+    <a asp-page="Create">Upload new property</a>
+</p>
+<form>
+    <p>
+        Location:  <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Search" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].AdsBasicInfo.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].AdsBasicInfo.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].AdsBasicInfo.Description)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].AdsBasicInfo.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].EnergyRating)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Properties[0].AdsBasicInfo.ListingCreated)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Properties)
+        {
+            <tr>
+                <td>
+                    <img src="@Url.Content(item.AdsBasicInfo.Image)" width="200" height="200" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdsBasicInfo.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdsBasicInfo.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdsBasicInfo.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnergyRating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdsBasicInfo.ListingCreated)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.PropertyID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.PropertyID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.PropertyID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

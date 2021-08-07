@@ -1,0 +1,44 @@
+﻿@page
+@model PropertyMarketplace.Pages.Properties.Apartments.IndexModel
+
+@{
+    ViewData["Title"] = "Your Listing";
+}
+
+
+
+<div class="card-group">
+    @foreach (var item in Model.Properties.Where(x => x.CategoryId == 5))
+    {
+    <div class="card">
+        <div class="card-body">
+            <h1 class="card-img-top"><img src="@Url.Content(item.AdsBasicInfo.Image))" width="239" height="180" /></h1>
+            <h5 class="card-title">@item.AdsBasicInfo.Title @item.AdsBasicInfo.Location</h5>
+            <p class="card-text">@item.AdsBasicInfo.Description.Substring(0, Math.Min(item.AdsBasicInfo.Description.Length, 200))...</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Number of rooms: @Html.DisplayFor(modelItem => item.NumberOfRooms)</small>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Overall floor area in m2: @Html.DisplayFor(modelItem => item.FloorArea)</small>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Energy Rating: @Html.DisplayFor(modelItem => item.EnergyRating)</small>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Price: @Html.DisplayFor(modelItem => item.AdsBasicInfo.Price)</small>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Location @Html.DisplayFor(modelItem => item.AdsBasicInfo.Location)</small>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Created:  @Html.DisplayFor(modelItem => item.AdsBasicInfo.ListingCreated)</small>
+            <a asp-page="/Properties/Details" asp-route-id="@item.PropertyID" class="stretched-link"></a>
+        </div>
+    </div>
+    }
+
+
+
+
+</div>

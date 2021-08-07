@@ -1,0 +1,102 @@
+﻿@page
+@model PropertyMarketplace.Pages.PostListing.Auto_Moto.Van.CreateModel
+
+@{
+    ViewData["Title"] = "Upload new Van";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Upload new Van</h1>
+
+<h4>Auto Moto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="AutoMoto.ManufacturerID" class="control-label"></label>
+                <select asp-for="ManufacturerId" class="form-control" asp-items="ViewBag.ManufacturerID "></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AutoMoto.ModelID" class="control-label"></label>
+                <select asp-for="ModelId" class="form-control" asp-items="ViewBag.ModelID"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AutoMoto.YearOfManufacture" class="control-label"></label>
+                <input asp-for="AutoMoto.YearOfManufacture" class="form-control" />
+                <span asp-validation-for="AutoMoto.YearOfManufacture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AutoMoto.Mileage" class="control-label"></label>
+                <input asp-for="AutoMoto.Mileage" class="form-control" />
+                <span asp-validation-for="AutoMoto.Mileage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AutoMoto.AdsBasicInfo.Title" class="control-label"></label>
+                <input asp-for="AutoMoto.AdsBasicInfo.Title" class="form-control" />
+                <span asp-validation-for="AutoMoto.AdsBasicInfo.Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="AutoMoto.AdsBasicInfo.Description" class="control-label"></label>
+                <input asp-for="AutoMoto.AdsBasicInfo.Description" class="form-control" />
+                <span asp-validation-for="AutoMoto.AdsBasicInfo.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AutoMoto.TransmissionType" class="control-label"></label>
+                <select asp-for="AutoMoto.TransmissionType" class="form-control" asp-items="Html.GetEnumSelectList<TransmissionTypes>()"></select>
+                <span asp-validation-for="AutoMoto.TransmissionType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AutoMoto.AdsBasicInfo.Price" class="control-label"></label>
+                <input asp-for="AutoMoto.AdsBasicInfo.Price" class="form-control" />
+                <span asp-validation-for="AutoMoto.AdsBasicInfo.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AutoMoto.AdsBasicInfo.Image" class="control-label"></label>
+                <input asp-for="AutoMoto.AdsBasicInfo.Image" class="form-control" />
+                <span asp-validation-for="AutoMoto.AdsBasicInfo.Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AutoMoto.AdsBasicInfo.Location" class="control-label"></label>
+                <input asp-for="AutoMoto.AdsBasicInfo.Location" class="form-control" />
+                <span asp-validation-for="AutoMoto.AdsBasicInfo.Location" class="text-danger"></span>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script type="text/javascript">
+        $(function () {
+            $("#ManufacturerId").on("change", function () {
+                var ManufacturerId = $(this).val();
+                $("#ModelId").empty();
+                $("#ModelId").append("<option value=''>Select Model</option>");
+                $.getJSON(`?handler=VanModels&ManufacturerId=${ManufacturerId}`, (data) => {
+                    console.log(data);
+                    $.each(data, function (i, item) {
+                        $("#ModelId").append(`<option value="${item.ModelID}"> ${item.ModelName} </option>`);
+                    });
+                });
+            });
+
+        });
+    </script>
+}
