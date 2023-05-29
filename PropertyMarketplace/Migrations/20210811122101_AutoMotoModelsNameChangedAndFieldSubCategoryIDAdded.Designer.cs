@@ -3,20 +3,22 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PropertyMarketplace.Data;
 
 namespace PropertyMarketplace.Migrations
 {
     [DbContext(typeof(PropertyMarketplaceContext))]
-    partial class PropertyMarketplaceContextModelSnapshot : ModelSnapshot
+    [Migration("20210811122101_AutoMotoModelsNameChangedAndFieldSubCategoryIDAdded")]
+    partial class AutoMotoModelsNameChangedAndFieldSubCategoryIDAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.8")
+                .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -363,9 +365,6 @@ namespace PropertyMarketplace.Migrations
                     b.Property<string>("ManufacturerName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SubCategoryID")
-                        .HasColumnType("int");
-
                     b.HasKey("ManufacturerID");
 
                     b.HasIndex("CategoryId");
@@ -387,7 +386,6 @@ namespace PropertyMarketplace.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("EnergyRating")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("FloorArea")

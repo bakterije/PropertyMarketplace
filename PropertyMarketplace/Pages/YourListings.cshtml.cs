@@ -23,14 +23,16 @@ namespace PropertyMarketplace.Pages
 
         public async Task OnGetAsync()
         {
-          
+
+           
             var currentUser = UserManager.GetUserId(User);
             AdsList = await Context.AdsBasicInfo.Include(a => a.Category)
                 .Where(a => a.OwnerID == currentUser )
                 .ToListAsync();
-            Properties = await Context.Property.Where(p => p.OwnerID == currentUser)
+            Properties = await Context.Property.Include(x => x.AdsBasicInfo)
+                .Where(p => p.OwnerID == currentUser)
                 .ToListAsync();
-            AutoMotos = await Context.AutoMoto.Include(x => x.CarModels.Manufacturers)
+            AutoMotos = await Context.AutoMoto.Include(x => x.AutoMotoModels.Manufacturers)
             .Where(x => x.OwnerID == currentUser).
                 ToListAsync();
         }

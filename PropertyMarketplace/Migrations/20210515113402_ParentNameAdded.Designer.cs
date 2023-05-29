@@ -306,7 +306,7 @@ namespace PropertyMarketplace.Migrations
                     b.ToTable("AutoMoto");
                 });
 
-            modelBuilder.Entity("PropertyMarketplace.Models.CarModels", b =>
+            modelBuilder.Entity("PropertyMarketplace.Models.AutoMotoModels", b =>
                 {
                     b.Property<int>("ModelID")
                         .ValueGeneratedOnAdd()
@@ -323,7 +323,7 @@ namespace PropertyMarketplace.Migrations
 
                     b.HasIndex("ManufacturerID");
 
-                    b.ToTable("CarModels");
+                    b.ToTable("AutoMotoModels");
                 });
 
             modelBuilder.Entity("PropertyMarketplace.Models.Category", b =>
@@ -488,7 +488,7 @@ namespace PropertyMarketplace.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PropertyMarketplace.Models.CarModels", "CarModels")
+                    b.HasOne("PropertyMarketplace.Models.AutoMotoModels", "AutoMotoModels")
                         .WithMany()
                         .HasForeignKey("ModelID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -496,14 +496,14 @@ namespace PropertyMarketplace.Migrations
 
                     b.Navigation("AdsBasicInfo");
 
-                    b.Navigation("CarModels");
+                    b.Navigation("AutoMotoModels");
 
                     b.Navigation("Category");
 
                     b.Navigation("Manufacturers");
                 });
 
-            modelBuilder.Entity("PropertyMarketplace.Models.CarModels", b =>
+            modelBuilder.Entity("PropertyMarketplace.Models.AutoMotoModels", b =>
                 {
                     b.HasOne("PropertyMarketplace.Models.Manufacturers", "Manufacturers")
                         .WithMany()

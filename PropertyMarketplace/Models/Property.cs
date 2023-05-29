@@ -18,6 +18,7 @@ namespace PropertyMarketplace.Models
         public HouseTypes HouseType { get; set; }
         public int PropertyID { get; set; }
         [Display(Name = "Energy Rating")]
+        [Required]
         public string EnergyRating { get; set; }
    
         [Display(Name ="Number of rooms")]

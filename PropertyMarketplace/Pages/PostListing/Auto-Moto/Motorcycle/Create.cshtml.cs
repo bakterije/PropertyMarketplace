@@ -46,7 +46,7 @@ namespace PropertyMarketplace.Pages.PostListing.Auto_Moto.Motorcycle
             
             ViewData["ManufacturerID"] = new SelectList(from p in _context.Manufacturers.Where(x => x.CategoryId == 2) select p, "ManufacturerID", "ManufacturerName");
             
-         ViewData["ModelID"] = new SelectList(from p in _context.CarModels.Where(x => x.ManufacturerID == ManufacturerId) select p, "ModelID", "ModelName");
+         ViewData["ModelID"] = new SelectList(from p in _context.AutoMotoModels.Where(x => x.ManufacturerID == ManufacturerId) select p, "ModelID", "ModelName");
            
           }
 

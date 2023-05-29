@@ -21,7 +21,8 @@ namespace PropertyMarketplace.Pages.Auto_Moto
 
         [BindProperty]
         public AutoMoto AutoMoto { get; set; }
-     
+        public AdsBasicInfo Ads { get; set; }
+
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -32,7 +33,7 @@ namespace PropertyMarketplace.Pages.Auto_Moto
 
             AutoMoto = await _context.AutoMoto
                 .Include(a => a.AdsBasicInfo)
-                .Include(a => a.CarModels)
+                .Include(a => a.AutoMotoModels)
                 .Include(a => a.Category)
                 .Include(a => a.Manufacturers).FirstOrDefaultAsync(m => m.AutoMotoID == id);
 
@@ -51,9 +52,11 @@ namespace PropertyMarketplace.Pages.Auto_Moto
             }
 
             AutoMoto = await _context.AutoMoto.FindAsync(id);
+            Ads = await _context.AdsBasicInfo.FindAsync(AutoMoto.AdID);
 
             if (AutoMoto != null)
             {
+                _context.AdsBasicInfo.Remove(Ads);
                 _context.AutoMoto.Remove(AutoMoto);
                 await _context.SaveChangesAsync();
             }

@@ -11,16 +11,17 @@ namespace PropertyMarketplace.Data
         {
         }
 
-        public DbSet<Property> Property { get; set; }
-   
-        public DbSet<AutoMoto> AutoMoto { get; set; }
+      
      
         public DbSet<Category> Category { get; set; }
-        public DbSet<CarModels> CarModels { get; set; }
+        public DbSet<AutoMotoModels> AutoMotoModels { get; set; }
         public DbSet<Manufacturers> Manufacturers { get; set; }
+        public DbSet<Property> Property { get; set; }
+
+        public DbSet<AutoMoto> AutoMoto { get; set; }
         public DbSet<AdsBasicInfo> AdsBasicInfo { get; set; }
-        
-        
-    
+
+
+
     }
 }

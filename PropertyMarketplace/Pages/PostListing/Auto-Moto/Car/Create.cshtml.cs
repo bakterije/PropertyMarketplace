@@ -33,6 +33,7 @@ namespace PropertyMarketplace.Pages.PostListing.Auto_Moto.Car
       public int ManufacturerId  { get; set; }
        [BindProperty]
         public int ModelId { get; set; }
+        public int SubCategoriesId { get; set; }
         
      
         
@@ -42,7 +43,7 @@ namespace PropertyMarketplace.Pages.PostListing.Auto_Moto.Car
             
          ViewData["ManufacturerID"] = new SelectList(from p in Context.Manufacturers.Where(x => x.CategoryId == 2) select p, "ManufacturerID", "ManufacturerName");
             
-         ViewData["ModelID"] = new SelectList(from p in Context.CarModels.Where(x => x.ManufacturerID == ManufacturerId) select p, "ModelID", "ModelName");
+         ViewData["ModelID"] = new SelectList(from p in Context.AutoMotoModels.Where(x => x.ManufacturerID == ManufacturerId) select p, "ModelID", "ModelName");
            
           }
 
@@ -52,7 +53,7 @@ namespace PropertyMarketplace.Pages.PostListing.Auto_Moto.Car
         public JsonResult OnGetCarModels()
         {
 
-            return new JsonResult(_autoMotoService.GetCarModels(ManufacturerId));
+            return new JsonResult(_autoMotoService.GetCarModels(ManufacturerId, SubCategoriesId));
         }
         
     

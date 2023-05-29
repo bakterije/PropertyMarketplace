@@ -14,11 +14,11 @@ namespace PropertyMarketplace.Services
         IEnumerable<Manufacturers> GetScooterManufacturers();
         IEnumerable<Manufacturers> GetMotorcycleManufacturers();
         IEnumerable<Manufacturers> GetVanManufacturers();
-        IEnumerable<CarModels> GetModels();
-        IEnumerable<CarModels> GetCarModels(int ManufacturerId);
-        IEnumerable<CarModels> GetMotorcycleModels(int ManufacturerId);
-        IEnumerable<CarModels> GetVanModels(int ManufacturerId);
-        IEnumerable<CarModels> GetScooterModels(int ManufacturerId);
+        IEnumerable<AutoMotoModels> GetModels();
+        IEnumerable<AutoMotoModels> GetCarModels(int ManufacturerId, int SubCategoriesId);
+        IEnumerable<AutoMotoModels> GetMotorcycleModels(int ManufacturerId);
+        IEnumerable<AutoMotoModels> GetVanModels(int ManufacturerId);
+        IEnumerable<AutoMotoModels> GetScooterModels(int ManufacturerId);
 
     }
 }

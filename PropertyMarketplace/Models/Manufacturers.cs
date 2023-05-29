@@ -16,6 +16,8 @@ namespace PropertyMarketplace.Models
         [ForeignKey("Category")]
        public int CategoryId { get; set; }
         public Category Category { get; set; }
+        [Display(Name ="Sub Category")]
+        public int SubCategoryID { get; set; }
 
        
     }

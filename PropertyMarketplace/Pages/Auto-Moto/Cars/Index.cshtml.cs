@@ -28,7 +28,7 @@ namespace PropertyMarketplace.Pages.Auto_Moto.Cars
         {
             AutoMoto = await Context.AutoMoto.Where(x=> x.CategoryId == 7   )
                 .Include(a => a.AdsBasicInfo)
-                .Include(a => a.CarModels)
+                .Include(a => a.AutoMotoModels)
                 .Include(a => a.Category)
                 .Include(a => a.Manufacturers).ToListAsync();
         }

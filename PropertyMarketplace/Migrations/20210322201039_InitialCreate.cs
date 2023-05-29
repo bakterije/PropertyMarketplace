@@ -250,7 +250,7 @@ namespace PropertyMarketplace.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CarModels",
+                name: "AutoMotoModels",
                 columns: table => new
                 {
                     ModelID = table.Column<int>(type: "int", nullable: false)
@@ -296,7 +296,7 @@ namespace PropertyMarketplace.Migrations
                     table.ForeignKey(
                         name: "FK_AutoMoto_CarModels_ModelID",
                         column: x => x.ModelID,
-                        principalTable: "CarModels",
+                        principalTable: "AutoMotoModels",
                         principalColumn: "ModelID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -379,7 +379,7 @@ namespace PropertyMarketplace.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_CarModels_ManufacturerID",
-                table: "CarModels",
+                table: "AutoMotoModels",
                 column: "ManufacturerID");
 
             migrationBuilder.CreateIndex(
@@ -433,7 +433,7 @@ namespace PropertyMarketplace.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "CarModels");
+                name: "AutoMotoModels");
 
             migrationBuilder.DropTable(
                 name: "AdsBasicInfo");

@@ -32,13 +32,13 @@ namespace PropertyMarketplace.Pages.Auto_Moto
         {
             var cars = from a in Context.AutoMoto
                 .Include(a => a.AdsBasicInfo)
-                .Include(a => a.CarModels)
+                .Include(a => a.AutoMotoModels)
                 .Include(a => a.Category)
                 .Include(a => a.Manufacturers) select a;
 
             if (!String.IsNullOrEmpty(SearchString))
             {
-                cars = cars.Where(s => s.AdsBasicInfo.Location.Contains(SearchString) || s.AdsBasicInfo.Description.Contains(SearchString) || s.CarModels.ModelName.Contains(SearchString));
+                cars = cars.Where(s => s.AdsBasicInfo.Location.Contains(SearchString) || s.AdsBasicInfo.Description.Contains(SearchString) || s.AutoMotoModels.ModelName.Contains(SearchString));
 
             }
 

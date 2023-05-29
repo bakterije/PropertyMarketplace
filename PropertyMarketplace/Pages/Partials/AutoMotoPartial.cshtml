@@ -1,75 +1,79 @@
-﻿@model AutoMotoPartial
-
+﻿@model Pages.Partials.AutoMotoPartial
 
 
 <script type="text/javascript">
 
     $(function () {
+        var categoryId = $("#categoryId").val();
+        var SubCategoriesId = $("#SubCategoriesId").val();
         $("#ManufacturerId").append("<option value=''>Select Manufacturer</option>");
-        $.getJSON(`PostListing?handler=Manufacturers&ManufacturerId=${SubCategoriesId}`, (data) => {
+        $.getJSON(`PostListing?handler=Manufacturers&SubCategoriesId=${SubCategoriesId}`, (data) => {
             console.log(data);
             $.each(data, function (i, item) {
                 $("#ManufacturerId").append(`<option value="${item.ManufacturerID}"> ${item.ManufacturerName} </option>`);
 
-                        });
-                    });
-                });
-       
-        
-    
-
-</script>
-
-
-<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-<div class="form-group">
-    <label asp-for="AutoMoto.YearOfManufacture" class="control-label"></label>
-    <input asp-for="AutoMoto.YearOfManufacture" class="form-control" />
-    <span asp-validation-for="AutoMoto.YearOfManufacture" class="text-danger"></span>
-</div>
-<div class="form-group">
-    <label asp-for="AutoMoto.Mileage" class="control-label"></label>
-    <input asp-for="AutoMoto.Mileage" class="form-control" />
-    <span asp-validation-for="AutoMoto.Mileage" class="text-danger"></span>
-</div>
-<div class="form-group">
-    <label asp-for="AutoMoto.ManufacturerID" class="control-label"></label>
-    <select asp-for="ManufacturerId" class="form-control" asp-items="ViewBag.ManufacturerID"></select>
-</div>
-<div class="form-group">
-    <label asp-for="AutoMoto.ModelID" class="control-label"></label>
-    <select asp-for="ModelId" class="form-control" asp-items="ViewBag.ModelID"></select>
-</div>
-<div class="form-group">
-    <label asp-for="AutoMoto.TransmissionType" class="control-label"></label>
-    <select asp-for="AutoMoto.TransmissionType" class="form-control" asp-items="@Html.GetEnumSelectList<TransmissionTypes>()"></select>
-    <span asp-validation-for="AutoMoto.TransmissionType" class="text-danger"></span>
-</div>
-
-
-
-<script type="text/javascript">
-    $(function () {
-        $("#ManufacturerId").on("change", function () {
-            var ManufacturerId = $(this).val();
-            $("#ModelId").empty();
-            $("#ModelId").append("<option value=''>Select Model</option>");
-            $.getJSON(`?handler=CarModels&ManufacturerId=${ManufacturerId}`, (data) => {
-                console.log(data);
-                $.each(data, function (i, item) {
-                    $("#ModelId").append(`<option value="${item.ModelID}"> ${item.ModelName} </option>`);
-                });
             });
         });
-
     });
-
-
 </script>
 
-$('#State').change(function () {
-var stateid = $('#State').val();
-$.ajax({
-url:
-})
-})
+@using (Html.BeginForm("AutoMotoPartial", "AutoMotoes", FormMethod.Post))
+{
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="AutoMoto.YearOfManufacture" class="control-label"></label>
+                    <input asp-for="AutoMoto.YearOfManufacture" class="form-control" />
+                    <span asp-validation-for="AutoMoto.YearOfManufacture" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AutoMoto.Mileage" class="control-label"></label>
+                    <input asp-for="AutoMoto.Mileage" class="form-control" />
+                    <span asp-validation-for="AutoMoto.Mileage" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AutoMoto.ManufacturerID" class="control-label"></label>
+                    <select asp-for="ManufacturerId" class="form-control" asp-items="ViewBag.ManufacturerID"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AutoMoto.ModelID" class="control-label"></label>
+                    <select asp-for="ModelId" class="form-control" asp-items="ViewBag.ModelID"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AutoMoto.TransmissionType" class="control-label"></label>
+                    <select asp-for="AutoMoto.TransmissionType" class="form-control" asp-items="@Html.GetEnumSelectList<TransmissionTypes>()"></select>
+                    <span asp-validation-for="AutoMoto.TransmissionType" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+                </div>
+        </form>
+    </div>
+    </div>
+
+}
+
+            <script type="text/javascript">
+                $(function () {
+                    $("#ManufacturerId").on("change", function () {
+                        var ManufacturerId = $(this).val();
+                        var SubCategoriesId = $("#SubCategoriesId").val();
+                        $("#ModelId").empty();
+                        $("#ModelId").append("<option value=''>Select Model</option>");
+                        $.getJSON(`PostListing?handler=CarModels&ManufacturerId=${ManufacturerId}&SubCategoriesId=${SubCategoriesId}`, (data) => {
+                            console.log(data);
+                            $.each(data, function (i, item) {
+                                $("#ModelId").append(`<option value="${item.ModelID}"> ${item.ModelName} </option>`);
+                            });
+                        });
+                    });
+
+                });
+
+               
+            </script>
+

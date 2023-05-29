@@ -39,7 +39,7 @@ namespace PropertyMarketplace.Pages.PostListing.Auto_Moto.Scooter
     
     
         ViewData["ManufacturerID"] = new SelectList(_context.Manufacturers.Where(x => x.CategoryId == 10), "ManufacturerID", "ManufacturerName");
-            ViewData["ModelID"] = new SelectList(_context.CarModels.Where(x => x.ManufacturerID == ManufacturerId), "ModelID", "ModelName");
+            ViewData["ModelID"] = new SelectList(_context.AutoMotoModels.Where(x => x.ManufacturerID == ManufacturerId), "ModelID", "ModelName");
             return Page();
         }
         public JsonResult OnGetScooterModels()

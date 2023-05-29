@@ -19,14 +19,14 @@ namespace PropertyMarketplace.Services
         
         public IEnumerable<Manufacturers> GetCarManufacturers()
         {
-            IEnumerable<Manufacturers> manufacturers = _context.Manufacturers.Where(x => x.CategoryId == 2).ToList();
+                IEnumerable<Manufacturers> manufacturers = _context.Manufacturers.Where(x => x.CategoryId == 2).ToList();
                 return manufacturers;
 
             
         }
         public IEnumerable<Manufacturers> GetManufacturers(int SubCategoriesId)
         {
-            IEnumerable<Manufacturers> manufacturers = _context.Manufacturers.Where(x => x.CategoryId == SubCategoriesId).ToList();
+            IEnumerable<Manufacturers> manufacturers = _context.Manufacturers.Where(x => x.SubCategoryID == SubCategoriesId).ToList();
             return manufacturers;
 
 
@@ -47,34 +47,34 @@ namespace PropertyMarketplace.Services
             return manufacturers;
         }
 
-        public IEnumerable<CarModels> GetModels()
+        public IEnumerable<AutoMotoModels> GetModels()
         {
-            IEnumerable<CarModels> models = _context.CarModels.ToList();
+            IEnumerable<AutoMotoModels> models = _context.AutoMotoModels.ToList();
             return models;
         }
-        public IEnumerable<CarModels> GetCarModels(int ManufacturerId)
+        public IEnumerable<AutoMotoModels> GetCarModels(int ManufacturerId, int SubCategoriesId)
         {
             
-            IEnumerable<CarModels> model = _context.CarModels.Where(x => x.ManufacturerID == ManufacturerId).ToList();
+            IEnumerable<AutoMotoModels> model = _context.AutoMotoModels.Where(x => x.ManufacturerID == ManufacturerId && x.SubCategoryID == SubCategoriesId).ToList();
             return model;
            
         }
 
-        public IEnumerable<CarModels> GetScooterModels(int ManufacturerId)
+        public IEnumerable<AutoMotoModels> GetScooterModels(int ManufacturerId)
         {
-            IEnumerable<CarModels> model = _context.CarModels.Where(x => x.ManufacturerID == ManufacturerId).ToList();
+            IEnumerable<AutoMotoModels> model = _context.AutoMotoModels.Where(x => x.ManufacturerID == ManufacturerId).ToList();
             return model;
 
         }
-        public IEnumerable<CarModels> GetMotorcycleModels(int ManufacturerId)
+        public IEnumerable<AutoMotoModels> GetMotorcycleModels(int ManufacturerId)
         {
-            IEnumerable<CarModels> model = _context.CarModels.Where(x => x.ManufacturerID == ManufacturerId).ToList();
+            IEnumerable<AutoMotoModels> model = _context.AutoMotoModels.Where(x => x.ManufacturerID == ManufacturerId).ToList();
             return model;
 
         }
-        public IEnumerable<CarModels> GetVanModels(int ManufacturerId)
+        public IEnumerable<AutoMotoModels> GetVanModels(int ManufacturerId)
         {
-            IEnumerable<CarModels> model = _context.CarModels.Where(x => x.ManufacturerID == ManufacturerId).ToList();
+            IEnumerable<AutoMotoModels> model = _context.AutoMotoModels.Where(x => x.ManufacturerID == ManufacturerId).ToList();
             return model;
 
         }

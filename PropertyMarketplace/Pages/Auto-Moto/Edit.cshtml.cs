@@ -32,7 +32,7 @@ namespace PropertyMarketplace.Pages.Auto_Moto
 
             AutoMoto = await _context.AutoMoto
                 .Include(a => a.AdsBasicInfo)
-                .Include(a => a.CarModels)
+                .Include(a => a.AutoMotoModels)
                 .Include(a => a.Category)
                 .Include(a => a.Manufacturers).FirstOrDefaultAsync(m => m.AdID == id);
 
@@ -41,7 +41,7 @@ namespace PropertyMarketplace.Pages.Auto_Moto
                 return NotFound();
             }
            ViewData["AdID"] = new SelectList(_context.AdsBasicInfo, "AdID", "AdID");
-           ViewData["ModelID"] = new SelectList(_context.CarModels, "ModelID", "ModelID");
+           ViewData["ModelID"] = new SelectList(_context.AutoMotoModels, "ModelID", "ModelID");
            ViewData["categoryId"] = new SelectList(_context.Category, "categoryId", "categoryId");
            ViewData["ManufacturerID"] = new SelectList(_context.Manufacturers, "ManufacturerID", "ManufacturerID");
             return Page();

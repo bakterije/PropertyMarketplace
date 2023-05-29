@@ -31,7 +31,7 @@ namespace PropertyMarketplace.Pages
         public async Task OnGetAsync()
         {
             var cars = from p in Context.AutoMoto.Include(a => a.AdsBasicInfo)
-                .Include(a => a.CarModels)
+                .Include(a => a.AutoMotoModels)
                 .Include(a => a.Manufacturers) select p;
             var categories = from p in Context.Category select p;
             var properties = from p in Context.Property select p;
@@ -42,7 +42,7 @@ namespace PropertyMarketplace.Pages
 
             if (!String.IsNullOrEmpty(SearchString))
             {
-                cars = cars.Where(s => s.AdsBasicInfo.Location.Contains(SearchString) || s.AdsBasicInfo.Description.Contains(SearchString) || s.CarModels.ModelName.Contains(SearchString));
+                cars = cars.Where(s => s.AdsBasicInfo.Location.Contains(SearchString) || s.AdsBasicInfo.Description.Contains(SearchString) || s.AutoMotoModels.ModelName.Contains(SearchString));
                 properties = properties.Where(s => s.AdsBasicInfo.Location.Contains(SearchString) || s.AdsBasicInfo.Description.Contains(SearchString));
 
             }

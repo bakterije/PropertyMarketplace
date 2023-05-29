@@ -21,10 +21,10 @@ namespace PropertyMarketplace.Models
         
         public int ManufacturerID { get; set; }
         public virtual Manufacturers Manufacturers { get; set; }
-        [ForeignKey("CarModels")]
+        [ForeignKey("AutoMotoModels")]
         public int ModelID { get; set; }
 
-        public virtual CarModels  CarModels { get; set; }
+        public virtual AutoMotoModels  AutoMotoModels { get; set; }
      
         [Display(Name ="Transmission Type")]
         public TransmissionTypes TransmissionType { get; set; }

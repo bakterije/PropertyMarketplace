@@ -20,7 +20,7 @@ namespace PropertyMarketplace.Pages.Properties
         public IList<Property> Properties { get; set; }
         public IList<AutoMoto> AutoMotos { get; set; }
         public IList<Category> Categories { get; set; }
-        public IList<CarModels> Models { get; set; }
+        public IList<AutoMotoModels> Models { get; set; }
         public IList<Manufacturers> Manufacturers { get; set; }
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }

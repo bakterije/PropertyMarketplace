@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using PropertyMarketplace.Data;
 using PropertyMarketplace.Models;
-using PropertyMarketplace.Pages.Properties;
 using PropertyMarketplace.Services;
-
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace PropertyMarketplace.Pages.Partials
 {
@@ -49,15 +39,31 @@ namespace PropertyMarketplace.Pages.Partials
         }
 
 
-        public JsonResult OnGetCarModels()
-        {
-
-            return new JsonResult(_autoMotoService.GetCarModels(ManufacturerId));
-        }
-
-
         [BindProperty]
         public AutoMoto AutoMoto { get; set; }
+        
+        public ActionResult OnPostAuto()
+        {
+            _context.AutoMoto.Add(AutoMoto);
+            _context.SaveChangesAsync();
+            return null;
 
+        }
+        public ActionResult Upload ()
+        {
+            _context.AutoMoto.Add(AutoMoto);
+             _context.SaveChangesAsync();
+            return null;
+        }
+        public async Task<IActionResult> OnPost()
+
+        {
+
+            _context.AutoMoto.Add(AutoMoto);
+            await _context.SaveChangesAsync();
+
+
+            return null;
+        }
     }
 }

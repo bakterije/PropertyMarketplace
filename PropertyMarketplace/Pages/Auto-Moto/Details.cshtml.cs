@@ -30,7 +30,7 @@ namespace PropertyMarketplace.Pages.Auto_Moto
 
             AutoMoto = await _context.AutoMoto
                 .Include(a => a.AdsBasicInfo)
-                .Include(a => a.CarModels)
+                .Include(a => a.AutoMotoModels)
                 .Include(a => a.Category)
                 .Include(a => a.Manufacturers).FirstOrDefaultAsync(m => m.AutoMotoID == id);
 

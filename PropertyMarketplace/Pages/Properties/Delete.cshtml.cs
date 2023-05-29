@@ -26,8 +26,8 @@ namespace PropertyMarketplace.Pages.Properties
         }
 
         [BindProperty]
-        public Models.Property Property { get; set; }
-        public Models.AdsBasicInfo Ads { get; set; }
+        public Property Property { get; set; }
+        public AdsBasicInfo Ads { get; set; }
         
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -42,7 +42,7 @@ namespace PropertyMarketplace.Pages.Properties
                 .FirstOrDefaultAsync(m => m.PropertyID == id);
             var isAuthorized = await AuthorizationService.AuthorizeAsync(
                                                        User, Property,
-                                                       BaseModelOperations.Create);
+                                                       BaseModelOperations.Delete);
             if (!isAuthorized.Succeeded)
             {
                 return Forbid();
@@ -69,7 +69,7 @@ namespace PropertyMarketplace.Pages.Properties
 
             var isAuthorized = await AuthorizationService.AuthorizeAsync(
                                                      User, Property,
-                                                     BaseModelOperations.Create);
+                                                     BaseModelOperations.Delete);
             if (!isAuthorized.Succeeded)
             {
                 return Forbid();
